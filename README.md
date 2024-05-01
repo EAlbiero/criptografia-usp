@@ -1,0 +1,1 @@
+Este repositório é uma coleção de programas feitos ao longo da matéria MAC0336/5573 - Criptografia para Segurança de Dados, feita no 1º semestre de 2024. Os programas consistem principalmente de EPs (Exercício-Programa) que foram entregues no decorrer da disciplina.
