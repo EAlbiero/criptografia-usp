@@ -55,7 +55,6 @@ class Util():
         for _ in range(N):
             testemunho = rd.randint(1, p-1)
             r = pow(testemunho, c, p)
-            print(r, testemunho)
             
             for _ in range(t):
                 aux = pow(r, 2, p)
