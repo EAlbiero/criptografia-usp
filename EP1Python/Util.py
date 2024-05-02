@@ -1,6 +1,6 @@
 import hashlib
 import math
-import random
+import random as rd
 
 
 class Util():
@@ -29,11 +29,33 @@ class Util():
         """
         return 0
 
-    def miller_rabin(p: int):
+    def miller_rabin(p: int, N: int):
         """
-        Utiliza o algoritmo de Miller-Rabin com, 
+        Utiliza o algoritmo de Miller-Rabin com N interações para determinar se 
+        um número p é primo ou não
         """
-        return 0
+        
+        c = p-1
+        t = 0
+        while c%2 == 0:
+            t += 1
+            c //= 2
+
+        for _ in range(N):
+            testemunho = rd.randint(1, p-1)
+            r = pow(testemunho, c, p)
+            print(r, testemunho)
+            
+            for _ in range(t):
+                aux = pow(r, 2, p)
+                if (aux == 1) and not ( (r == 1) or (r == p-1) ):
+                    return False
+                
+                r = aux
+
+        if r != 1:
+            return False
+        return True
 
 
 
