@@ -27,7 +27,18 @@ class Util():
         Calcula e devolve o menor número primo maior ou igual do que t utilizando
         o algoritmo Miller-Rabin.
         """
-        return 0
+
+        if t % 2 == 0:
+            p = t+1
+        else:
+            p = t
+
+        while True:
+            if Util.miller_rabin(p, 40):
+                break
+            p += 2
+
+        return p
 
     def miller_rabin(p: int, N: int):
         """
