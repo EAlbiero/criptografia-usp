@@ -1,4 +1,3 @@
-
 from Util import Util
 import hashlib
 import random as rd
@@ -59,7 +58,7 @@ def main():
     g2.update((r_oaep2 << 128).to_bytes(256))
 
     saida_unpadding = (x2 ^ (int(g2.hexdigest(), 16) >> 128)) >> 96
-    print(f"Inversa do algoritmko RSA OAEP: {saida_unpadding}")
+    print(f"Inversa do algoritmo RSA OAEP: {saida_unpadding}")
 
 
     ####################################################################
@@ -90,14 +89,5 @@ def main():
 
     print("Saída alterando o primeiro bit à esquerda:", saida_complemento2)
     print("Diferença comparado com a saída original:", hamming2)
-
-
-
-    
-
-
-
-
-
 
 main()
