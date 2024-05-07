@@ -72,12 +72,26 @@ class Util():
         s*p = 1mod(phi)
         """
         return pow(s, -1, phi)
+    
+    def hamming(x: int, y: int):
+        """
+        Calcula a distância de Hamming entre dois números (quantidade de bits diferentes)
+        """
+        count = 0
+
+        for i in str(bin(x^y)):
+            if i == '1':
+                count +=1
+
+        return count
 
     def aplica_rsa_oaep(msg: int, r_oaep: int):
         """
         Aplica o algoritmo RSA OAEP para a mensagem msg usando como seed r_oaep. Devolve
         a saída do algoritmo.
         """
+
+        print(f"Mensagem utilizada: {msg}")
 
         # Gerei primos de 256 bits ao invés de 128 como o enunciado pede porque sem isso
         # a volta do RSA não funcionava, pois X||Y tem 256 bits > n = q*r.
