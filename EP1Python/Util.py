@@ -75,11 +75,11 @@ class Util():
 
         # Calculei s 'sorteando' possíveis valores até achar mdc(s, phi) = 1. Pensei
         # em procurar os números em ordem crescente para tentar melhorar a eficiência,
-        # mas achei que usando randomint poderia tirar alguma possível tendência no valor
+        # mas achei que usando randint poderia tirar alguma possível tendência no valor
         # da chave
         while True:
             # Checamos apenas os números ímpares  
-            s = 2*rd.randomint(1, phi//2) - 1
+            s = 2*rd.randint(1, phi//2) - 1
             if math.gcd(phi, s) == 1:
                 return s
             
