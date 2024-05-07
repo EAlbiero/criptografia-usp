@@ -67,8 +67,28 @@ class Util():
             return False
         return True
 
+    def calcula_chave_secreta(phi: int):
+        """
+        Calcula uma chave secreta s para o algoritmo RSA tal que
+        mdc(s, phi) = 1
+        """
 
-
+        # Calculei s 'sorteando' possíveis valores até achar mdc(s, phi) = 1. Pensei
+        # em procurar os números em ordem crescente para tentar melhorar a eficiência,
+        # mas achei que usando randomint poderia tirar alguma possível tendência no valor
+        # da chave
+        while True:
+            # Checamos apenas os números ímpares  
+            s = 2*rd.randomint(1, phi//2) - 1
+            if math.gcd(phi, s) == 1:
+                return s
+            
+    def calcula_chave_publica(phi: int, s: int):
+        """
+        Calcula uma chave pública p para o algoritmo RSA tal que
+        s*p = 1mod(phi)
+        """
+        return pow(s, -1, phi)
 
 
 
