@@ -73,6 +73,36 @@ class Util():
         """
         return pow(s, -1, phi)
 
+    def aplica_rsa_oaep(msg: int, r_oaep: int):
+        """
+        Aplica o algoritmo RSA OAEP para a mensagem msg usando como seed r_oaep. Devolve
+        a saída do algoritmo.
+        """
 
+        # Gerei primos de 256 bits ao invés de 128 como o enunciado pede porque sem isso
+        # a volta do RSA não funcionava, pois X||Y tem 256 bits > n = q*r.
+        # Seguindo o 'padrão' usado para G e H, os 128 bits faltantes foram preenchidos com 0
+        q = Util.calcula_primo(((((((msg << 32) | msg) << 32) | msg) << 32) | msg)<<128)
+        r = Util.calcula_primo(q+2)
+        n = q*r
+        g = hashlib.sha3_256()
+        h = hashlib.sha3_256()
+
+        g.update( (r_oaep << 128).to_bytes(256) )
+        x = (msg << 96) ^ (int(g.hexdigest(), 16) >> 128)
+
+        h.update((x << 128).to_bytes(256))
+        y = (int(h.hexdigest(), 16) >> 128) ^ r_oaep
+        
+
+        phi = (q-1)*(r-1)
+        s = Util.calcula_chave_secreta(phi)
+        p = Util.calcula_chave_publica(phi, s)
+
+        
+        entrada_rsa = (x << 128) | y
+
+        return pow(entrada_rsa, p, n)
+    
 
 
